@@ -1,3 +1,5 @@
+//At the end of lecture 17
+
 console.log('App.js is running');
 
 const app = {
