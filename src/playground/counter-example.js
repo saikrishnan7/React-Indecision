@@ -21,9 +21,6 @@ const template = (
     </div>
 );
 
-function getOptionsLength(options) {
-    return options.length;
-}
 function getLocation(location) {
     if(location) {
         return <p>location: {location}</p>;
