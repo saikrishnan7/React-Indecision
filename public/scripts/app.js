@@ -1,6 +1,6 @@
 'use strict';
 
-//At the end of lecture 18
+//At the end of lecture 19
 
 console.log('App.js is running');
 
@@ -64,16 +64,13 @@ var renderOptions = function renderOptions() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'Item one'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item two'
-            )
+            app.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',
