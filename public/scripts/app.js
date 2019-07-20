@@ -1,6 +1,6 @@
 'use strict';
 
-//At the end of lecture 19
+//At the end of lecture 20
 
 console.log('App.js is running');
 
@@ -13,6 +13,12 @@ var app = {
 function getOptionsLength(options) {
     return options.length;
 }
+
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var option = app.options[randomNum];
+    alert(option);
+};
 
 var onRemoveClick = function onRemoveClick() {
     app.options = [];
@@ -52,9 +58,9 @@ var renderOptions = function renderOptions() {
             getOptionsLength(app.options) > 0 ? 'Here are your options' : 'No Options'
         ),
         React.createElement(
-            'p',
-            null,
-            app.options.length
+            'button',
+            { disabled: app.options.length == 0, onClick: onMakeDecision },
+            'What should I do?'
         ),
         React.createElement(
             'button',
