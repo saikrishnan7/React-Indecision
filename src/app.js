@@ -1,4 +1,4 @@
-//At the end of lecture 21
+//At the end of lecture 22
 
 console.log('App.js is running');
 
