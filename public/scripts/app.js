@@ -8,7 +8,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//End of lecture 27
+//End of lecture 28
 
 var IndecisionApp = function (_React$Component) {
     _inherits(IndecisionApp, _React$Component);
@@ -22,17 +22,15 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: 'render',
         value: function render() {
+            var title = 'Indecision';
+            var subtitle = 'Put your life in the hands of a computer';
+            var options = ['One', 'Two', 'Three'];
             return React.createElement(
                 'div',
                 null,
-                React.createElement(
-                    'h1',
-                    null,
-                    'Indecision'
-                ),
-                React.createElement(Header, null),
+                React.createElement(Header, { title: title, subtitle: subtitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOption, null)
             );
         }
@@ -54,9 +52,18 @@ var Header = function (_React$Component2) {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'p',
+                'div',
                 null,
-                'Put your life in the hands of a computer.'
+                React.createElement(
+                    'h1',
+                    null,
+                    this.props.title
+                ),
+                React.createElement(
+                    'h2',
+                    null,
+                    this.props.subtitle
+                )
             );
         }
     }]);
@@ -106,7 +113,9 @@ var Options = function (_React$Component4) {
             return React.createElement(
                 'div',
                 null,
-                'Options component here',
+                this.props.options.map(function (opt) {
+                    return React.createElement(Option, { key: opt, optionText: opt });
+                }),
                 React.createElement(Option, null)
             );
         }
@@ -130,7 +139,7 @@ var Option = function (_React$Component5) {
             return React.createElement(
                 'div',
                 null,
-                'Option component here'
+                this.props.optionText
             );
         }
     }]);
