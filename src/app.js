@@ -1,4 +1,4 @@
-//End of lecture 28
+//End of lecture 29
 
 class IndecisionApp extends React.Component
 {
@@ -29,19 +29,26 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        alert('handlePick');
+    }
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button onClick={this.handlePick}>What should I do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
+    handleRemoveAll() {
+        alert('RemoveAll');
+    }
     render() {
         return (
             <div>
+                <button onClick={this.handleRemoveAll}>Remove All</button>
                 {
                     this.props.options.map((opt) => <Option key={opt} optionText = {opt} />)
                 }
@@ -62,10 +69,20 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+        const text = e.target.elements.option.value.trim();
+        if(text) {
+            alert(text);
+        }
+    }
     render() {
         return (
             <div>
-                Add Option component here
+            <form onSubmit={this.handleAddOption}>
+                <input type="text" name="option" />
+                <button>Add Option</button>
+            </form>
             </div>
         );
     }
