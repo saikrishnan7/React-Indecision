@@ -8,51 +8,29 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//At the end of lecture 33
+//End of lecture 35
 
-console.log('App.js is running');
+var Visibility = function (_React$Component) {
+    _inherits(Visibility, _React$Component);
 
-var Counter = function (_React$Component) {
-    _inherits(Counter, _React$Component);
+    function Visibility(props) {
+        _classCallCheck(this, Visibility);
 
-    function Counter(props) {
-        _classCallCheck(this, Counter);
+        var _this = _possibleConstructorReturn(this, (Visibility.__proto__ || Object.getPrototypeOf(Visibility)).call(this, props));
 
-        var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
-
-        _this.handleAddOne = _this.handleAddOne.bind(_this);
-        _this.handleMinusOne = _this.handleMinusOne.bind(_this);
-        _this.handleReset = _this.handleReset.bind(_this);
+        _this.toggleVisibility = _this.toggleVisibility.bind(_this);
         _this.state = {
-            count: 0
+            visible: true
         };
         return _this;
     }
 
-    _createClass(Counter, [{
-        key: 'handleAddOne',
-        value: function handleAddOne() {
+    _createClass(Visibility, [{
+        key: 'toggleVisibility',
+        value: function toggleVisibility() {
             this.setState(function (prevState) {
                 return {
-                    count: prevState.count + 1
-                };
-            });
-        }
-    }, {
-        key: 'handleMinusOne',
-        value: function handleMinusOne() {
-            this.setState(function (prevState) {
-                return {
-                    count: prevState.count - 1
-                };
-            });
-        }
-    }, {
-        key: 'handleReset',
-        value: function handleReset() {
-            this.setState(function () {
-                return {
-                    count: 0
+                    visible: !prevState.visible
                 };
             });
         }
@@ -65,92 +43,51 @@ var Counter = function (_React$Component) {
                 React.createElement(
                     'h1',
                     null,
-                    'Count: ',
-                    this.state.count
+                    'Visibility Toggle'
                 ),
                 React.createElement(
                     'button',
-                    { onClick: this.handleAddOne },
-                    '+1'
+                    { onClick: this.toggleVisibility },
+                    this.state.visible ? 'Show Detail' : 'Hide Detail'
                 ),
-                React.createElement(
-                    'button',
-                    { onClick: this.handleMinusOne },
-                    '-1'
-                ),
-                React.createElement(
-                    'button',
-                    { onClick: this.handleReset },
-                    'reset'
+                !this.state.visible && React.createElement(
+                    'p',
+                    null,
+                    'Here is some detail'
                 )
             );
         }
     }]);
 
-    return Counter;
+    return Visibility;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
+/*const appRoot = document.getElementById('app');
 
-/*const app = {
-    appTitle : 'Indecision App',
-    appSubtitle : 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
-};*/
+let buttonValue = 'Show details';
 
-//JSX - Javascript XML
-/*const template = (
-    <div>
-        <h1>{app.appTitle}</h1> 
-        {app.appSubtitle && <p>{app.appSubtitle}</p>}
-        <p>{getOptionsLength(app.options) > 0 ? 'Here are your options' : 'No Options'}</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-    </div>
-);
-
-function getLocation(location) {
-    if(location) {
-        return <p>location: {location}</p>;
-    }
+const getDisplayValue = (text) => {
+    return text == 'Show details' ? null : 'Here are some details';
+}
+const toggle = () => {
+    buttonValue = buttonValue == 'Show details' ? 'Hide details' : 'Show details';
+    renderVisibilityToggle();
 }
 
-const user = {
-    age : 2,
-    profession : 'Child'
-};
-
-let count = 0;
-
-const addOne = () => {
-    count++; 
-    renderCounterApp(); 
-};
-
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-};
-
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
-
-const appRoot = document.getElementById('app');
-
-const renderCounterApp = () => {
+const renderVisibilityToggle = () => {
     const templateTwo = (
         <div>
-            <h1>Count: {count}</h1>
-            <button onClick={addOne}>+1</button>
-            <button onClick={minusOne}>-1</button>
-            <button onClick={reset}>reset</button>
+            <h1>Visibility Toggle</h1>
+            <button onClick={toggle}>{buttonValue}</button>
+            {
+                getDisplayValue(buttonValue) && <p>{getDisplayValue(buttonValue)}</p>
+            }
         </div>
     );
     ReactDOM.render(templateTwo, appRoot);
 };
 
-renderCounterApp();*/
+renderVisibilityToggle();*/
+
+var appRoot = document.getElementById('app');
+ReactDOM.render(React.createElement(Visibility, null), appRoot);
