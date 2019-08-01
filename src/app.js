@@ -9,21 +9,35 @@ class IndecisionApp extends React.Component
         this.handlePick = this.handlePick.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
         this.state = {
-            options: ['One', 'Two', 'Three']
-        }
+            options: []
+        };
     }
 
     componentDidMount() {
-
+        try{
+            const json = localStorage.getItem('options');
+            const options = JSON.parse(json);
+            if(options) 
+            {
+                this.setState(() => ({options}));
+            }
+        }
+        catch(e) {
+            //Do nothing at all
+        }
     }
 
-    componentWillUnMount() {
+    componentWillUnmount() {
         
     }
 
     componentDidUpdate(prevProps, prevState) {
-        
+        if(prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options);
+            localStorage.setItem('options', json);
+        }
     }
+
     handleDeleteOption(optionToRemove) {
         this.setState((prevState) => ({
             options: prevState.options.filter((option) => {
@@ -31,13 +45,16 @@ class IndecisionApp extends React.Component
             })
         }))
     }
+
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }));
     }
+
     handlePick() {
         const optionIndex = Math.floor(Math.random() * this.state.options.length);
         alert(this.state.options[optionIndex]);
     }
+
     handleAddOption(option) {
         if(!option) {
             return 'Enter a valid option to add';
@@ -47,6 +64,7 @@ class IndecisionApp extends React.Component
         }
         this.setState((prevState) => ({options: prevState.options.concat(option)}));
     }
+
     render() {
         const title = 'Indecision';
         const subtitle = 'Put your life in the hands of a computer';
@@ -89,6 +107,7 @@ const Options = (props) => {
     return (
         <div>
             <button onClick={props.handleDeleteOptions}>Remove All</button>
+            { props.options.length === 0 && <p>Please add an option to get started</p>}
             {
                 props.options.map((opt) => 
                 <Option 
