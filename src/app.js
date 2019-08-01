@@ -1,4 +1,4 @@
-//End of lecture 43
+//End of lecture 44
 
 class IndecisionApp extends React.Component
 {
@@ -11,6 +11,18 @@ class IndecisionApp extends React.Component
         this.state = {
             options: ['One', 'Two', 'Three']
         }
+    }
+
+    componentDidMount() {
+
+    }
+
+    componentWillUnMount() {
+        
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        
     }
     handleDeleteOption(optionToRemove) {
         this.setState((prevState) => ({
