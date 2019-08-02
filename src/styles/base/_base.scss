@@ -1,8 +1,9 @@
 body {
     font-family: Helvetica, Arial, sans-serif;
+    font-size: $m-size;
+    background-color: $dark-blue;
 }
 
-h1 {
-    color: red;
-    font-size: 1.6rem;
+html {
+    font-size: 62.5%;
 }
