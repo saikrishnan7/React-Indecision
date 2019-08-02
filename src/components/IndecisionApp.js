@@ -61,7 +61,7 @@ export default class IndecisionApp extends React.Component
 
     handleAddOption(option) {
         if(!option) {
-            console.log('testing');
+            console.log('testingggg!!!');
             return 'Enter a valid option to add';
         }
         else if(this.state.options.indexOf(option) > -1) {
