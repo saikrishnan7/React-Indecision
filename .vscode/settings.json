@@ -1,0 +1,5 @@
+{
+    "github.remoteName": "https://github.com/saikrishnan7/React-Indecision.git",
+    "git.enableSmartCommit": true,
+    "git.postCommitCommand": "push"
+}
